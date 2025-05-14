@@ -3,10 +3,56 @@
   "info": {
     "title": "העוזר לזכויות אזרח בישראל",
     "version": "1.0.0",
-    "description": "עוזר חכם לכל אזרח בישראל שמסביר בעברית פשוטה את כל נושאי הזכאות – ביטוח לאומי, קצבאות, מסים, שירותים ממשלתיים ועוד."
+    "description": "GPT שעוזר לאזרחים להבין את הזכויות שלהם בישראל – קצבאות, נכות, בריאות, תעסוקה ועוד."
   },
-  "paths": {},
-  "components": {},
-  "x-openai-isConsequential": false,
-  "x-openai-apiType": "openapi"
+  "servers": [
+    {
+      "url": "https://dummy-server.example.com",
+      "description": "שרת דמה לתמיכה בפעולה"
+    }
+  ],
+  "paths": {
+    "/check-eligibility": {
+      "get": {
+        "operationId": "checkEligibility",
+        "summary": "בדוק זכאות לנושא מסוים",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "required": true,
+            "description": "נושא לבדיקה – למשל נכות, הבטחת הכנסה, סל קליטה וכו'",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "מידע על הזכאות לפי הנושא",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EligibilityResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EligibilityResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "example": "ייתכן שאתה זכאי. למידע נוסף, בקר באתר gov.il או צור קשר עם ביטוח לאומי."
+          }
+        }
+      }
+    }
+  }
 }
