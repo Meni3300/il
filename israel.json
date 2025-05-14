@@ -1,0 +1,58 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "זכאות בישראל – עוזר חכם",
+    "version": "1.0.0",
+    "description": "שאל כל שאלה על זכויות אזרח בישראל וקבל תשובה מלאה בעברית: קצבאות, ביטוח לאומי, נכות, מסים ועוד."
+  },
+  "servers": [
+    {
+      "url": "https://gpt-israel-helper.replit.app",
+      "description": "שרת פייק לפעולה בסיסית"
+    }
+  ],
+  "paths": {
+    "/check": {
+      "get": {
+        "operationId": "checkEligibility",
+        "summary": "בדיקת זכאות בסיסית",
+        "parameters": [
+          {
+            "name": "topic",
+            "in": "query",
+            "description": "נושא הזכאות: נכות, הבטחת הכנסה, סל קליטה וכו'",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "תשובה מוצעת",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EligibilityResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EligibilityResponse": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "string",
+            "example": "ייתכן ואתה זכאי לקצבה. מומלץ לבדוק באתר gov.il או ליצור קשר עם ביטוח לאומי."
+          }
+        }
+      }
+    }
+  }
+}
