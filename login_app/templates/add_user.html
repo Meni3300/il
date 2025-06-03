@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>הוסף משתמש</title>
+</head>
+<body>
+    <h1>הוסף משתמש</h1>
+    {% if error %}<p style="color:red;">{{ error }}</p>{% endif %}
+    {% if message %}<p style="color:green;">{{ message }}</p>{% endif %}
+    <form method="post">
+        <label>שם משתמש:<input type="text" name="new_username"></label><br>
+        <label>סיסמה:<input type="password" name="new_password"></label><br>
+        <label><input type="checkbox" name="is_admin"> מנהל</label><br>
+        <button type="submit">הוסף</button>
+    </form>
+    <p><a href="{{ url_for('home') }}">חזור לבית</a></p>
+</body>
+</html>
